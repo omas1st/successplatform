@@ -1,0 +1,192 @@
+/* Dashboard.css */
+.dashboard {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+.dashboard h1 {
+    color: #2c3e50;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.dashboard h2 {
+    color: #34495e;
+    font-size: 1.5rem;
+    margin: 1.5rem 0 1rem;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 0.5rem;
+}
+
+.dashboard p {
+    line-height: 1.6;
+    margin: 0.8rem 0;
+    color: #4a5568;
+}
+
+.balls-row {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+}
+
+.lotto-ball {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 2rem;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    background: radial-gradient(circle at 65% 15%, #ffffff 0%, var(--ball-color) 100%);
+}
+
+.lotto-ball::before {
+    content: '';
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 40%, #ffffff 0%, rgba(255,255,255,0.5) 100%);
+    filter: blur(2px);
+}
+
+.lotto-ball span {
+    position: relative;
+    z-index: 1;
+    color: #111;
+    text-shadow: 
+        0 0 2px rgba(0, 0, 0, 0.3),
+        0 0 4px rgba(255, 255, 255, 0.3);
+    font-weight: 800;
+    font-size: 2.2rem;
+    letter-spacing: -1px;
+}
+
+.lotto-ball[color="#88f"] {
+    --ball-color: #4a86e8;
+}
+
+.lotto-ball[color="#f88"] {
+    --ball-color: #e84a4a;
+}
+
+.lotto-ball:hover {
+    transform: scale(1.1) rotate(15deg);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+section {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cta {
+    background: #f8f9fa;
+    border: 1px solid #e2e8f0;
+    text-align: center;
+}
+
+button {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 1rem 0;
+}
+
+button:hover {
+    background: #2980b9;
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button:disabled {
+    background: #bdc3c7;
+    cursor: not-allowed;
+}
+
+textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 5px;
+    margin: 1rem 0;
+    font-family: inherit;
+    font-size: 1rem;
+    resize: vertical;
+    min-height: 100px;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.notification {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 5px;
+    border: 1px solid #e2e8f0;
+    color: #4a5568;
+}
+
+@media (max-width: 768px) {
+    .dashboard {
+        padding: 1rem;
+    }
+    
+    .dashboard h1 {
+        font-size: 2rem;
+    }
+    
+    .dashboard h2 {
+        font-size: 1.3rem;
+    }
+    
+    section {
+        padding: 1rem;
+        margin: 1rem 0;
+    }
+    
+    .lotto-ball {
+        width: 60px;
+        height: 60px;
+        font-size: 1.7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .lotto-ball {
+        width: 50px;
+        height: 50px;
+        font-size: 1.4rem;
+    }
+    
+    .balls-row {
+        gap: 1rem;
+    }
+}

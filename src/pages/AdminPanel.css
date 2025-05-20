@@ -1,0 +1,183 @@
+/* AdminPanel.css */
+:root {
+    --admin-primary: #1a237e;
+    --admin-secondary: #283593;
+    --admin-accent: #3949ab;
+    --admin-bg: #f8f9fa;
+    --admin-text: #2d3748;
+    --admin-border: #e2e8f0;
+    --admin-error: #dc3545;
+    --admin-success: #28a745;
+}
+
+/* Admin Login Form */
+.admin-login {
+    max-width: 400px;
+    margin: 5rem auto;
+    padding: 2.5rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.admin-login h2 {
+    color: var(--admin-primary);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.75rem;
+    font-weight: 600;
+}
+
+.admin-login form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.admin-login input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--admin-border);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.admin-login input:focus {
+    outline: none;
+    border-color: var(--admin-accent);
+    box-shadow: 0 0 0 3px rgba(57, 73, 171, 0.1);
+}
+
+.admin-login button[type="submit"] {
+    background: var(--admin-primary);
+    color: white;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.admin-login button[type="submit"]:hover {
+    background: var(--admin-secondary);
+    transform: translateY(-1px);
+}
+
+.admin-login button:not([type="submit"]) {
+    width: 100%;
+    margin-top: 1rem;
+    background: transparent;
+    color: var(--admin-primary);
+    border: 2px solid var(--admin-primary);
+}
+
+.error {
+    color: white;
+    background: var(--admin-error);
+    padding: 0.75rem;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Admin Panel Layout */
+.admin-panel {
+    display: flex;
+    min-height: 100vh;
+    background: var(--admin-bg);
+}
+
+.admin-nav {
+    width: 260px;
+    background: var(--admin-primary);
+    padding: 2rem;
+    position: fixed;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.admin-nav h2 {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgba(255,255,255,0.1);
+}
+
+.admin-nav nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.admin-nav a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.admin-nav a:hover {
+    background: rgba(255,255,255,0.1);
+    color: white;
+}
+
+.admin-nav a.active {
+    background: var(--admin-accent);
+    color: white;
+    font-weight: 500;
+}
+
+.admin-content {
+    flex: 1;
+    margin-left: 260px;
+    padding: 2rem;
+    min-height: 100vh;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .admin-panel {
+        flex-direction: column;
+    }
+    
+    .admin-nav {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 1.5rem;
+    }
+    
+    .admin-nav nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .admin-nav a {
+        font-size: 0.9rem;
+        padding: 0.5rem 0.75rem;
+    }
+    
+    .admin-content {
+        margin-left: 0;
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-login {
+        margin: 2rem auto;
+        padding: 1.5rem;
+    }
+    
+    .admin-nav nav {
+        flex-direction: column;
+    }
+}

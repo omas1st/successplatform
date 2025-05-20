@@ -1,0 +1,164 @@
+/* RedirectUrlsEditor.css */
+.redirect-urls-editor {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.redirect-urls-editor h3 {
+    color: #333;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+}
+
+.search {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.search input {
+    flex-grow: 1;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.search button {
+    padding: 0.8rem 1.5rem;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search button:hover {
+    background-color: #1976D2;
+}
+
+.user-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+    border: 1px solid #eee;
+    border-radius: 4px;
+}
+
+.user-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.user-list li:last-child {
+    border-bottom: none;
+}
+
+.user-list li button {
+    padding: 0.5rem 1rem;
+    background-color: #666;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.user-list li button:hover {
+    background-color: #555;
+}
+
+.profile-editor {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    background-color: #f8f9fa;
+}
+
+.profile-editor h4 {
+    margin: 0 0 1.5rem 0;
+    color: #444;
+    font-size: 1.2rem;
+}
+
+.url-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    align-items: center;
+}
+
+.url-row input {
+    flex-grow: 1;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.url-row select {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+    min-width: 150px;
+}
+
+.url-row select option[value="approved"] {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.url-row select option[value="disapproved"] {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+.url-row select option[value="pending"] {
+    background-color: #fff3e0;
+    color: #ef6c00;
+}
+
+.profile-editor > button {
+    margin-top: 1.5rem;
+    padding: 1rem 2rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 1rem;
+}
+
+.profile-editor > button:hover {
+    background-color: #45a049;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .url-row {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .url-row input,
+    .url-row select {
+        width: 100%;
+    }
+    
+    .search {
+        flex-direction: column;
+    }
+    
+    .search button {
+        width: 100%;
+    }
+}

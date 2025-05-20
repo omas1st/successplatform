@@ -1,0 +1,206 @@
+/* Home.css */
+
+:root {
+    --primary-blue: #24394e;
+    --accent-gold: #FFD700;
+    --deep-red: #000000;
+    --soft-white: #d6e3f1;
+    --success-green: #27ae60;
+    --professional-gray: #010d14;
+    --premium-blue: #889bd4;
+    --premium-red: #e74c3c;
+  }
+  
+  .home-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: var(--soft-white);
+    min-height: 100vh;
+    position: relative;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+  
+  main {
+    padding-bottom: 80px;
+  }
+  
+  section {
+    background-color: white;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+  
+  h2 {
+    color: var(--primary-blue);
+    font-size: 1.6rem;
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    position: relative;
+    padding-bottom: 10px;
+  }
+  
+  h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--accent-gold);
+  }
+  
+  h3 {
+    color: var(--professional-gray);
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .balls-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    gap: 15px;
+    justify-items: center;
+    padding: 20px 0;
+  }
+  
+  .balls-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px 0;
+  }
+  
+  .lotto-ball {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: rgb(0, 0, 0);
+    font-size: 1.4rem;
+    background-color: var(--deep-red);
+    border: 2px solid rgba(0, 0, 0, 0.397);
+  }
+  
+  .lotto-ball[color="#88f"] {
+    background-color: var(--premium-blue);
+    border-color: rgba(0,0,0,0.1);
+  }
+  
+  .lotto-ball[color="#f88"] {
+    background-color: var(--premium-red);
+    border-color: rgba(0, 0, 0, 0.267);
+  }
+  
+  .predictions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin: 30px 0;
+  }
+  
+  .predictions > div {
+    background: var(--soft-white);
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,0.05);
+  }
+  
+  .cta {
+    text-align: center;
+    background-color: var(--primary-blue);
+    color: rgb(255, 255, 255);
+    padding: 30px;
+    border-radius: 12px;
+  }
+  
+  .cta p {
+    margin: 0 auto 25px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 600px;
+    color: black; /* Changed to black */
+  }
+  
+  .cta button {
+    background: var(--accent-gold);
+    color: black;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .cta button:hover {
+    background: #ffd900;
+    transform: translateY(-2px);
+  }
+  
+  .site-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--primary-blue);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+    border-top: 3px solid var(--accent-gold);
+  }
+  
+  @media (max-width: 768px) {
+    .home-page {
+      padding: 15px;
+    }
+  
+    h2 {
+      font-size: 1.4rem;
+    }
+  
+    .lotto-ball {
+      width: 50px;
+      height: 50px;
+      font-size: 1.2rem;
+    }
+  
+    .predictions {
+      grid-template-columns: 1fr;
+      gap: 25px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    h2 {
+      font-size: 1.2rem;
+    }
+  
+    .cta {
+      padding: 20px;
+    }
+  
+    .cta button {
+      width: 100%;
+      justify-content: center;
+    }
+  }

@@ -1,0 +1,120 @@
+/* HomeBallsEditor.css */
+.home-balls-editor {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.home-balls-editor h3 {
+    color: #333;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+section {
+    margin-bottom: 3rem;
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+h4 {
+    color: #444;
+    margin: 0 0 1.5rem 0;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+h5 {
+    color: #666;
+    margin: 1.5rem 0;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.balls-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 1.5rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.editor-ball {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.editor-ball input {
+    width: 60px;
+    padding: 0.5rem;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.editor-ball input:focus {
+    outline: none;
+    border-color: #2196F3;
+    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+}
+
+/* Premium type styling */
+[data-type="lunchtime"] h5 {
+    color: #2196F3;
+}
+
+[data-type="teatime"] h5 {
+    color: #f44336;
+}
+
+.home-balls-editor button {
+    display: block;
+    margin: 2rem auto 0;
+    padding: 1rem 3rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.home-balls-editor button:hover {
+    background-color: #45a049;
+}
+
+/* Trophy styling */
+.lotto-ball[data-won="true"] {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .balls-grid {
+        grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+        gap: 1rem;
+    }
+    
+    .editor-ball input {
+        width: 50px;
+        font-size: 0.9rem;
+    }
+    
+    section {
+        padding: 1rem;
+    }
+    
+    .home-balls-editor button {
+        width: 100%;
+        max-width: 300px;
+    }
+}

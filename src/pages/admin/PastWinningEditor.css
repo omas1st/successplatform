@@ -1,0 +1,95 @@
+/* PastWinningEditor.css */
+.past-winning-editor {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.past-winning-editor h3 {
+    color: #333;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.past-winning-editor section {
+    margin-bottom: 2.5rem;
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.past-winning-editor h4 {
+    color: #444;
+    margin: 0 0 1.5rem 0;
+    font-size: 1.2rem;
+}
+
+.balls-row {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.balls-row input {
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    font-size: 1.4rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.balls-row input:focus {
+    outline: none;
+    border-color: #2196F3;
+    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+}
+
+.balls-row input:hover {
+    border-color: #999;
+}
+
+.past-winning-editor button {
+    display: block;
+    margin: 2rem auto 0;
+    padding: 1rem 3rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.past-winning-editor button:hover {
+    background-color: #45a049;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .balls-row {
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+    
+    .balls-row input {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+    
+    .past-winning-editor section {
+        padding: 1rem;
+    }
+    
+    .past-winning-editor button {
+        width: 100%;
+        max-width: 300px;
+    }
+}
