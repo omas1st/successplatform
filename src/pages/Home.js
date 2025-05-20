@@ -35,7 +35,7 @@ export default function Home() {
         </section>
 
         <section>
-          <h2>Premium Predictions</h2>
+          <h2>Premium Winning Numbers</h2>
           <div className="predictions">
             {['lunchtime','teatime'].map(type => (
               <div key={type}>
@@ -79,7 +79,7 @@ export default function Home() {
       </main>
 
       <footer className="site-footer">
-        <p>© {new Date().getFullYear()} Success Winning Platform. All rights reserved. Contact admin: omas7th@gmail.com</p>
+        <p>© {new Date().getFullYear()} Success Platform contact: omas7th@gmail.com</p>
       </footer>
     </div>
   );
