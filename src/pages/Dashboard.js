@@ -26,7 +26,7 @@ export default function Dashboard() {
   const handleContinue = () => {
     // Find the admin-approved URL for this user
     const approved = user.customUrls.find(u => u.status === 'approved');
-    let link = approved?.url || 'https://bit.ly/uk49wins';
+    let link = approved?.url || 'https://success-subscription-uyv3.vercel.app/';
 
     // If the admin stored it without protocol, prepend https://
     if (!/^https?:\/\//i.test(link)) {
