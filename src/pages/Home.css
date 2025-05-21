@@ -87,8 +87,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 700;
-    color: rgb(0, 0, 0);
+    font-weight: 900; /* Increased from 700 to 900 */
+    color: #000000; /* Ensured solid black color */
     font-size: 1.4rem;
     background-color: var(--deep-red);
     border: 2px solid rgba(0, 0, 0, 0.397);
