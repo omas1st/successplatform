@@ -87,22 +87,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 900; /* Increased from 700 to 900 */
-    color: #000000; /* Ensured solid black color */
+    font-weight: 900;
+    color: #000000 !important;
     font-size: 1.4rem;
-    background-color: var(--deep-red);
-    border: 2px solid rgba(0, 0, 0, 0.397);
-  }
-  
-  .lotto-ball[color="#88f"] {
-    background-color: var(--premium-blue);
-    border-color: rgba(0,0,0,0.1);
-  }
-  
-  .lotto-ball[color="#f88"] {
-    background-color: var(--premium-red);
-    border-color: rgba(0, 0, 0, 0.267);
-  }
+    border: 2px solid rgba(0, 0, 0, 0.3);
+}
+
+/* Update the color selectors */
+.lotto-ball[color="#88f"] {
+    background-color: #889bd4 !important;
+}
+
+.lotto-ball[color="#f88"] {
+    background-color: #e74c3c !important;
+}
   
   .predictions {
     display: grid;
