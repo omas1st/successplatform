@@ -79,7 +79,7 @@ export default function Home() {
       </main>
 
       <footer className="site-footer">
-        <p>© {new Date().getFullYear()} Success Platform contact: omas7th@gmail.com</p>
+        <p>© {new Date().getFullYear()} Success Platform contact: uk49success@gmail.com</p>
       </footer>
     </div>
   );
