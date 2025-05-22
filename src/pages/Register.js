@@ -26,8 +26,10 @@ export default function Register() {
       return;
     }
     try {
-      await API.post('/users/register', form);
-      nav('/login');
+      const { data } = await API.post('/users/register', form);
+      localStorage.setItem('token', data.token);
+      window.dispatchEvent(new Event('tokenChanged'));
+      nav('/dashboard');
     } catch (err) {
       setError(err.response?.data?.message || 'Registration failed');
     }
@@ -57,4 +59,3 @@ export default function Register() {
     </form>
   );
 }
-
