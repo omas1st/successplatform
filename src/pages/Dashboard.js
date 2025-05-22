@@ -1,5 +1,5 @@
-// src/pages/Dashboard.js
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import API from '../api';
 import LottoBall from '../components/LottoBall';
 import './Dashboard.css';
@@ -9,31 +9,34 @@ export default function Dashboard() {
   const [premium, setPremium] = useState({ lunchtime: [], teatime: [] });
   const [message, setMessage] = useState('');
   const [sending, setSending] = useState(false);
+  const nav = useNavigate();
 
   useEffect(() => {
-    API.get('/users/me').then(res => {
-      const u = res.data;
-      setUser(u);
-      setPremium({
-        lunchtime: u.premium?.lunchtime || ["00","00","00","00"],
-        teatime:   u.premium?.teatime   || ["00","00","00","00"],
+    API.get('/users/me')
+      .then(res => {
+        const u = res.data;
+        setUser(u);
+        setPremium({
+          lunchtime: u.premium?.lunchtime || ["00","00","00","00"],
+          teatime:   u.premium?.teatime   || ["00","00","00","00"],
+        });
+      })
+      .catch(err => {
+        console.error('Error fetching user data:', err);
+        localStorage.removeItem('token');
+        window.dispatchEvent(new Event('tokenChanged'));
+        nav('/login');
       });
-    });
-  }, []);
+  }, [nav]);
 
   if (!user) return null;
 
   const handleContinue = () => {
-    // Find the admin-approved URL for this user
     const approved = user.customUrls.find(u => u.status === 'approved');
     let link = approved?.url || 'https://success-subscription-uyv3.vercel.app/';
-
-    // If the admin stored it without protocol, prepend https://
     if (!/^https?:\/\//i.test(link)) {
       link = `https://${link}`;
     }
-
-    // Navigate to the external link
     window.location.assign(link);
   };
 
@@ -52,7 +55,6 @@ export default function Dashboard() {
     }
   };
 
-  // Only show the latest notification
   const latestNotification =
     user.notifications?.length
       ? user.notifications[user.notifications.length - 1].body
