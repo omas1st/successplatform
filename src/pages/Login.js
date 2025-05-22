@@ -13,6 +13,7 @@ export default function Login() {
     try {
       const { data } = await API.post('/users/login', form);
       localStorage.setItem('token', data.token);
+      window.dispatchEvent(new Event('tokenChanged'));
       nav('/dashboard');
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed');
