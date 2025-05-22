@@ -2,10 +2,10 @@ import React from 'react';
 import './LottoBall.css';
 
 export default function LottoBall({ value, color, onClick }) {
-  const style = { backgroundColor: color || '#ccc' };
+  const style = { backgroundColor: color || '#f0f0f0' };
   return (
     <div className="lotto-ball" style={style} onClick={onClick}>
-      {value}
+      <span>{value}</span>
     </div>
   );
 }
