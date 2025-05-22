@@ -1,7 +1,7 @@
 /* LottoBall.css */
 .lotto-ball {
-    width: 65px;
-    height: 65px;
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
