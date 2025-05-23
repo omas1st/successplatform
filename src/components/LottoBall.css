@@ -1,4 +1,4 @@
-/* LottoBall.css */
+/* src/components/LottoBall.css */
 .lotto-ball {
     width: 65px;
     height: 65px;
@@ -37,11 +37,20 @@
         height: 55px;
         font-size: 1.2rem; /* Smaller mobile size */
     }
-}    
-    .lotto-ball::before {
-        width: 85%;
-        bottom: 8%;
-    }
+}
+
+.lotto-ball::before {
+    /* pseudo‐element backdrop or highlight */
+    content: '';
+    position: absolute;
+    width: 85%;
+    height: 85%;
+    bottom: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.05);
+    z-index: 1;
 }
 
 /* Optional animation for selected balls */
@@ -50,7 +59,7 @@
 }
 
 @keyframes ball-selected {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.1); }
     100% { transform: scale(1); }
 }
