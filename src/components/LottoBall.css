@@ -1,7 +1,7 @@
 /* LottoBall.css */
 .lotto-ball {
-    width: 65px;
-    height: 65px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     background: radial-gradient(circle at 65% 35%, #ffffff 0%, #f8f8f8 100%);
     display: flex;
