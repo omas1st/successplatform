@@ -1,56 +1,80 @@
-/* src/components/LottoBall.css */
+/* LottoBall.css */
 .lotto-ball {
     width: 65px;
     height: 65px;
     border-radius: 50%;
+    background: radial-gradient(circle at 65% 35%, #ffffff 0%, #f8f8f8 100%);
     display: flex;
     justify-content: center;
     align-items: center;
-    font-weight: 400; /* Normal weight */
-    font-size: 1.4rem; /* Reduced from 1.7rem */
-    color: #000000 !important;
+    font-weight: 400;
+    font-size: 1.4rem;
+    color: #000000;
     cursor: pointer;
     transition: all 0.2s ease;
     position: relative;
-    border: 2px solid rgba(0, 0, 0, 0.3);
-    background: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 2px solid #e0e0e0;
 }
 
-.lotto-ball span {
-    position: relative;
-    z-index: 2;
+/* Gold metallic band */
+.lotto-ball::before {
+    content: '';
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 15%;
+    background: linear-gradient(to right, #FFD700 0%, #D4AF37 50%, #FFD700 100%);
+    border-radius: 3px;
+    border: 1px solid #B8860B;
+    box-sizing: border-box;
+}
+
+/* Metallic sheen effect */
+.lotto-ball::after {
+    content: '';
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    width: 30%;
+    height: 30%;
+    background: linear-gradient(45deg, 
+        rgba(255,255,255,0.8) 0%,
+        rgba(255,255,255,0.4) 50%,
+        rgba(255,255,255,0) 100%);
+    border-radius: 50%;
+    pointer-events: none;
 }
 
 .lotto-ball:hover {
     transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.1);
 }
 
 .lotto-ball:active {
     transform: scale(0.98);
 }
 
+/* Number styling */
+.lotto-ball span {
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 2px 2px rgba(0,0,0,0.1);
+}
+
+/* Responsive Design */
 @media (max-width: 480px) {
     .lotto-ball {
         width: 55px;
         height: 55px;
-        font-size: 1.2rem; /* Smaller mobile size */
+        font-size: 1.4rem;
     }
-}
-
-.lotto-ball::before {
-    /* pseudo‐element backdrop or highlight */
-    content: '';
-    position: absolute;
-    width: 85%;
-    height: 85%;
-    bottom: 8%;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 50%;
-    background: rgba(0, 0, 0, 0.05);
-    z-index: 1;
+    
+    .lotto-ball::before {
+        width: 85%;
+        bottom: 8%;
+    }
 }
 
 /* Optional animation for selected balls */
@@ -59,7 +83,7 @@
 }
 
 @keyframes ball-selected {
-    0%   { transform: scale(1); }
-    50%  { transform: scale(1.1); }
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
     100% { transform: scale(1); }
 }
