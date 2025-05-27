@@ -1,59 +1,48 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import API from '../../api';
 import LottoBall from '../../components/LottoBall';
 import './HomeBallsEditor.css';
 
-// placeholders so balls render immediately
-const DEFAULT_FREE = Array(14).fill({ value: '00', isWon: false });
-const DEFAULT_PREMIUM = {
-  lunchtime: Array(4).fill({ value: '00', isWon: false }),
-  teatime:   Array(4).fill({ value: '00', isWon: false }),
-};
-
 export default function HomeBallsEditor() {
-  const [free, setFree] = useState(DEFAULT_FREE);
-  const [premium, setPremium] = useState(DEFAULT_PREMIUM);
-  const [loading, setLoading] = useState(true);
+  const [free, setFree] = useState([]);
+  const [premium, setPremium] = useState(null); // initially null to detect loading
 
   useEffect(() => {
-    API.get('/admin/balls').then(res => {
-      setFree(res.data.free);
-      setPremium(res.data.premium);
-    }).finally(() => {
-      setLoading(false);
-    });
+    API.get('/admin/balls')
+      .then(res => {
+        setFree(res.data.free || []);
+        setPremium(res.data.premium || { lunchtime: [], teatime: [] });
+      })
+      .catch(err => {
+        console.error("Failed to fetch balls:", err);
+        setPremium({ lunchtime: [], teatime: [] });
+      });
   }, []);
 
-  const updateFree = useCallback((idx, value) => {
-    setFree(f => {
-      const copy = [...f];
-      copy[idx] = { ...copy[idx], value };
-      return copy;
-    });
-  }, []);
+  const updateFree = (idx, value) => {
+    const newFree = [...free];
+    newFree[idx].value = value;
+    setFree(newFree);
+  };
 
-  const toggleWon = useCallback(idx => {
-    setFree(f => {
-      const copy = [...f];
-      copy[idx] = { ...copy[idx], isWon: !copy[idx].isWon };
-      return copy;
-    });
-  }, []);
+  const toggleWon = idx => {
+    const newFree = [...free];
+    newFree[idx].isWon = !newFree[idx].isWon;
+    setFree(newFree);
+  };
 
-  const updatePremium = useCallback((type, idx, value) => {
-    setPremium(p => {
-      const copy = { ...p };
-      copy[type] = copy[type].map((b, i) =>
-        i === idx ? { ...b, value } : b
-      );
-      return copy;
-    });
-  }, []);
+  const updatePremium = (type, idx, value) => {
+    const np = { ...premium };
+    np[type][idx].value = value;
+    setPremium(np);
+  };
 
   const save = () => {
     API.put('/admin/balls', { free, premium })
       .then(() => alert('Saved'));
   };
+
+  if (!premium) return <div>Loading...</div>; // show loading while fetching
 
   return (
     <div className="home-balls-editor">
@@ -85,7 +74,7 @@ export default function HomeBallsEditor() {
           <div key={type}>
             <h5>{type.charAt(0).toUpperCase() + type.slice(1)}</h5>
             <div className="balls-grid">
-              {premium[type].map((b, i) => (
+              {(premium[type] || []).map((b, i) => (
                 <div key={i} className="editor-ball">
                   <LottoBall
                     value={b.value}
@@ -103,9 +92,7 @@ export default function HomeBallsEditor() {
         ))}
       </section>
 
-      <button onClick={save} disabled={loading}>
-        {loading ? 'Loading…' : 'Save All'}
-      </button>
+      <button onClick={save}>Save All</button>
     </div>
   );
 }
