@@ -5,18 +5,13 @@ import './HomeBallsEditor.css';
 
 export default function HomeBallsEditor() {
   const [free, setFree] = useState([]);
-  const [premium, setPremium] = useState(null); // initially null to detect loading
+  const [premium, setPremium] = useState({ lunchtime: [], teatime: [] });
 
   useEffect(() => {
-    API.get('/admin/balls')
-      .then(res => {
-        setFree(res.data.free || []);
-        setPremium(res.data.premium || { lunchtime: [], teatime: [] });
-      })
-      .catch(err => {
-        console.error("Failed to fetch balls:", err);
-        setPremium({ lunchtime: [], teatime: [] });
-      });
+    API.get('/admin/balls').then(res => {
+      setFree(res.data.free);
+      setPremium(res.data.premium);
+    });
   }, []);
 
   const updateFree = (idx, value) => {
@@ -41,8 +36,6 @@ export default function HomeBallsEditor() {
     API.put('/admin/balls', { free, premium })
       .then(() => alert('Saved'));
   };
-
-  if (!premium) return <div>Loading...</div>; // show loading while fetching
 
   return (
     <div className="home-balls-editor">
@@ -74,7 +67,7 @@ export default function HomeBallsEditor() {
           <div key={type}>
             <h5>{type.charAt(0).toUpperCase() + type.slice(1)}</h5>
             <div className="balls-grid">
-              {(premium[type] || []).map((b, i) => (
+              {premium[type].map((b, i) => (
                 <div key={i} className="editor-ball">
                   <LottoBall
                     value={b.value}
