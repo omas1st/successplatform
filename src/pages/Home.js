@@ -11,7 +11,7 @@ const TESTIMONIALS = [
   {
     id: 'thandi',
     name: 'Thandi',
-    text: 'Activated, won R650k, and launched my catering empire! From street vendor to business owner in 7 days. Only God and this platform!',
+    text: 'I almost gave up betting on UK49s because of endless losses. Taking one last chance with Success Winning Platform was the best decision ever. I won R320,000 and my life has changed!',
     initialLikes: 31800,
   },
   {
@@ -19,6 +19,78 @@ const TESTIMONIALS = [
     name: 'Robert',
     text: 'I Won R1.2 MILLION after activation ✈️ Travelling SA with my queen. Life’s SHORT',
     initialLikes: 14500,
+  },
+  {
+    id: 'mahlaba',
+    name: 'Mahlaba',
+    text: 'I’d been scammed and lost count of my losses. But Success Winning Platform gave me a real win, R800,000 won just after activating my account!',
+    initialLikes: 28800,
+  },
+  {
+    id: 'modiba',
+    name: 'Modiba',
+    text: 'I’ve tried many platforms, but this is the only one that delivered. I won R300,000. Dreams do come true!',
+    initialLikes: 26100,
+  },
+  {
+    id: 'sphelele',
+    name: 'Sphelele',
+    text: 'I was skeptical at first, but after winning R160,000, I’m now a true believer. The process was simple and the results were real.',
+    initialLikes: 10700,
+  },
+  {
+    id: 'sbusiso',
+    name: 'Sbusiso',
+    text: 'With R430,000 in winnings, I can finally renovate my home. I’m so thankful for this platform and the admin.',
+    initialLikes: 18400,
+  },
+  {
+    id: 'ntombikhona',
+    name: 'Ntombikhona',
+    text: 'After endless losses and scams, I tried Success Winning Platform as my last hope. Their numbers brought me R1,100,000 unbelievable!',
+    initialLikes: 33100,
+  },
+  {
+    id: 'william',
+    name: 'William',
+    text: 'I was shocked when I saw I had won R600,000. This platform is the real deal for anyone looking to win big.',
+    initialLikes: 19100,
+  },
+  {
+    id: 'thamsanqa',
+    name: 'Thamsanqa',
+    text: 'After activating my account, I received my numbers and won R1,300,000! I’m forever grateful for this life-changing win.',
+    initialLikes: 24600,
+  },
+  {
+    id: 'john',
+    name: 'John',
+    text: 'I never thought I’d win after so many disappointments. Success Winning Platform gave me 3 straight numbers and bonus after i activated my account. I won R750,000!',
+    initialLikes: 11300,
+  },
+  {
+    id: 'kgomotso',
+    name: 'Kgomotso',
+    text: 'I never imagined I’d win R350,000 so quickly. This platform is trustworthy and delivers on its promises.',
+    initialLikes: 20000,
+  },
+  {
+    id: 'annah',
+    name: 'Annah',
+    text: 'I nearly gave up on betting, but Success Winning Platform’s winning numbers changed my story. I won R950,000 and I’m so grateful., thanks to Success wining platform and its admins',
+    initialLikes: 34700,
+  },
+  {
+    id: 'dingane',
+    name: 'Dingane',
+    text: 'I was on the verge of quitting UK49s for good after so many losses and falling for scams. But after joining Success Winning Platform, I won R450,000 with their 3 straight numbers and bonus! I can’t believe my luck finally changed.',
+    initialLikes: 30200,
+  },
+  {
+    id: 'daniel',
+    name: 'Daniel',
+    text: 'Honestly, I had lost all hope in UK49s. Scammers took so much from me. But Success Winning Platform restored my faith—I won R120,000 right after activating my account!',
+    initialLikes: 25500,
   },
 ];
 
