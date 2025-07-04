@@ -9,9 +9,9 @@
     --professional-gray: #010d14;
     --premium-blue: #889bd4;
     --premium-red: #e74c3c;
-  }
-  
-  .home-page {
+}
+
+.home-page {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
@@ -19,21 +19,21 @@
     min-height: 100vh;
     position: relative;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  }
-  
-  main {
+}
+
+main {
     padding-bottom: 80px;
-  }
-  
-  section {
+}
+
+section {
     background-color: white;
     border-radius: 12px;
     padding: 25px;
     margin-bottom: 25px;
     border: 1px solid rgba(0,0,0,0.08);
-  }
-  
-  h2 {
+}
+
+h2 {
     color: var(--primary-blue);
     font-size: 1.6rem;
     margin-bottom: 25px;
@@ -42,9 +42,9 @@
     letter-spacing: -0.5px;
     position: relative;
     padding-bottom: 10px;
-  }
-  
-  h2::after {
+}
+
+h2::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -53,34 +53,34 @@
     width: 60px;
     height: 3px;
     background: var(--accent-gold);
-  }
-  
-  h3 {
+}
+
+h3 {
     color: var(--professional-gray);
     font-size: 1.3rem;
     margin-bottom: 15px;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 1px;
-  }
-  
-  .balls-grid {
+}
+
+.balls-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
     gap: 15px;
     justify-items: center;
     padding: 20px 0;
-  }
-  
-  .balls-row {
+}
+
+.balls-row {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 15px;
     padding: 20px 0;
-  }
-  
-  .lotto-ball {
+}
+
+.lotto-ball {
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -92,49 +92,49 @@
     font-size: 1.4rem;
     background-color: var(--deep-red);
     border: 2px solid rgba(0, 0, 0, 0.397);
-  }
-  
-  .lotto-ball[color="#88f"] {
+}
+
+.lotto-ball[color="#88f"] {
     background-color: var(--premium-blue);
     border-color: rgba(0,0,0,0.1);
-  }
-  
-  .lotto-ball[color="#f88"] {
+}
+
+.lotto-ball[color="#f88"] {
     background-color: var(--premium-red);
     border-color: rgba(0, 0, 0, 0.267);
-  }
-  
-  .predictions {
+}
+
+.predictions {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
     margin: 30px 0;
-  }
-  
-  .predictions > div {
+}
+
+.predictions > div {
     background: var(--soft-white);
     padding: 25px;
     border-radius: 10px;
     border: 1px solid rgba(0,0,0,0.05);
-  }
-  
-  .cta {
+}
+
+.cta {
     text-align: center;
     background-color: var(--primary-blue);
     color: rgb(255, 255, 255);
     padding: 30px;
     border-radius: 12px;
-  }
-  
-  .cta p {
+}
+
+.cta p {
     margin: 0 auto 25px;
     font-size: 1.1rem;
     line-height: 1.6;
     max-width: 600px;
     color: black; /* Changed to black */
-  }
-  
-  .cta button {
+}
+
+.cta button {
     background: var(--accent-gold);
     color: black;
     border: none;
@@ -149,14 +149,14 @@
     display: inline-flex;
     align-items: center;
     gap: 10px;
-  }
-  
-  .cta button:hover {
+}
+
+.cta button:hover {
     background: #ffd900;
     transform: translateY(-2px);
-  }
-  
-  .site-footer {
+}
+
+.site-footer {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -167,40 +167,143 @@
     padding: 20px;
     font-size: 0.9rem;
     border-top: 3px solid var(--accent-gold);
-  }
-  
-  @media (max-width: 768px) {
+}
+
+@media (max-width: 768px) {
     .home-page {
-      padding: 15px;
+        padding: 15px;
     }
-  
+
     h2 {
-      font-size: 1.4rem;
+        font-size: 1.4rem;
     }
-  
+
     .lotto-ball {
-      width: 50px;
-      height: 50px;
-      font-size: 1.2rem;
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
     }
-  
+
     .predictions {
-      grid-template-columns: 1fr;
-      gap: 25px;
+        grid-template-columns: 1fr;
+        gap: 25px;
     }
-  }
-  
-  @media (max-width: 480px) {
+}
+
+@media (max-width: 480px) {
     h2 {
-      font-size: 1.2rem;
+        font-size: 1.2rem;
     }
-  
+
     .cta {
-      padding: 20px;
+        padding: 20px;
     }
-  
+
     .cta button {
-      width: 100%;
-      justify-content: center;
+        width: 100%;
+        justify-content: center;
     }
-  }
+}
+
+/* Testimonials Section */
+.testimonials-section {
+    background: white;
+    padding: 25px;
+    margin-bottom: 25px;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 12px;
+}
+
+.testimonials-section h2 {
+    color: var(--primary-blue);
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.testimonials-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--accent-gold);
+}
+
+.testimonial {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.avatar {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    background: var(--premium-blue);
+    color: white;
+    font-size: 1.75rem;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+}
+
+.testimonial-content {
+    flex: 1;
+}
+
+.testimonial-content strong {
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: var(--professional-gray);
+}
+
+.testimonial-content p {
+    margin: 0 0 10px;
+    color: #555;
+    line-height: 1.4;
+}
+
+.testimonial-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.like-button,
+.comment-link {
+    background: none;
+    border: none;
+    font-size: 0.95rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+}
+
+.like-button:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.like-button.liked {
+    background: #007bff;
+    color: white;
+}
+
+.comment-link {
+    color: #999;
+    cursor: not-allowed;
+}
