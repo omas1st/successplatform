@@ -89,7 +89,7 @@ const TESTIMONIALS = [
   {
     id: 'daniel',
     name: 'Daniel',
-    text: 'Honestly, I had lost all hope in UK49s. Scammers took so much from me. But Success Winning Platform restored my faith—I won R120,000 right after activating my account!',
+    text: 'Honestly, I had lost all hope in UK49s. Scammers took so much from me. But Success Winning Platform restored my faith. I won R120,000 right after activating my account!',
     initialLikes: 25500,
   },
 ];
