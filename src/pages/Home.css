@@ -7,8 +7,10 @@
     --soft-white: #d6e3f1;
     --success-green: #27ae60;
     --professional-gray: #010d14;
-    --premium-blue: #889bd4;
+    --premium-blue: #889bd4;    /* light-blue */
     --premium-red: #e74c3c;
+    --like-default: var(--premium-blue);
+    --like-active: var(--primary-blue);  /* deep blue */
 }
 
 .home-page {
@@ -280,9 +282,10 @@ h3 {
     gap: 15px;
 }
 
-.like-button,
-.comment-link {
-    background: none;
+/* Updated Like & Comment Buttons */
+.like-button {
+    background: var(--like-default);
+    color: white;
     border: none;
     font-size: 0.95rem;
     cursor: pointer;
@@ -295,15 +298,22 @@ h3 {
 }
 
 .like-button:hover {
-    background: rgba(0, 0, 0, 0.05);
+    background: darken(var(--like-default), 10%);
 }
 
 .like-button.liked {
-    background: #007bff;
-    color: white;
+    background: var(--like-active);
 }
 
 .comment-link {
+    background: none;
+    border: none;
+    font-size: 0.95rem;
     color: #999;
     cursor: not-allowed;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    border-radius: 4px;
 }
