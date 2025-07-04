@@ -85,13 +85,13 @@ export default function Dashboard() {
 
       <section className="cta">
         <p>
-          Kindly click the Continue button to activate your account to make the 3 straight winning numbers and Bonus appear on your dashboard immediately.
+          Kindly click the Activate button to activate your account to make the 3 straight winning numbers and Bonus appear on your dashboard immediately.
         </p>
-        <button onClick={handleContinue}>Continue</button>
+        <button onClick={handleContinue}>Activate</button>
       </section>
 
       <section>
-        <h2>Send a Message to Admin</h2>
+        <h2>Send a Message to Management</h2>
         <textarea
           placeholder="Type your message..."
           value={message}
