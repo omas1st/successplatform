@@ -120,7 +120,7 @@ export default function Home() {
     TESTIMONIALS.forEach(({ id, initialLikes }) => {
       let { count = initialLikes, lastUpdate } = stored[id] || {};
       if (lastUpdate !== today) {
-        count += 129;
+        count += 117;
         lastUpdate = today;
       }
       newLikes[id] = count;
