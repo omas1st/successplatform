@@ -1,6 +1,6 @@
 // src/pages/Home.js
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate }        from 'react-router-dom';
 import API                    from '../api';
 import Header                 from '../components/Header';
@@ -103,6 +103,11 @@ export default function Home() {
   const [justLiked, setJustLiked]     = useState({});
   const navigate = useNavigate();
 
+  // Carousel-specific state
+  const [currentIdx, setCurrentIdx] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const touchStartX = useRef(null);
+
   // Load lotto data
   useEffect(() => {
     API.get('/lotto/free').then(r => setFreeBalls(r.data.balls)).catch(() => {});
@@ -138,6 +143,51 @@ export default function Home() {
       setJustLiked(prev => ({ ...prev, [id]: false }));
     }, 800);
   };
+
+  // Carousel: auto-advance
+  useEffect(() => {
+    if (isPaused) return;
+    const interval = setInterval(() => {
+      setCurrentIdx(prev => (prev + 1) % TESTIMONIALS.length);
+    }, 5000); // 5s
+    return () => clearInterval(interval);
+  }, [isPaused]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handler = e => {
+      if (e.key === 'ArrowLeft') {
+        setCurrentIdx(prev => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
+      } else if (e.key === 'ArrowRight') {
+        setCurrentIdx(prev => (prev + 1) % TESTIMONIALS.length);
+      }
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, []);
+
+  const goPrev = () => setCurrentIdx(prev => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
+  const goNext = () => setCurrentIdx(prev => (prev + 1) % TESTIMONIALS.length);
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  const handleTouchEnd = (e) => {
+    const endX = e.changedTouches[0].clientX;
+    const startX = touchStartX.current;
+    if (startX == null) return;
+    const diff = startX - endX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) {
+        goNext();
+      } else {
+        goPrev();
+      }
+    }
+    touchStartX.current = null;
+  };
+
+  const current = TESTIMONIALS[currentIdx];
 
   return (
     <div className="home-page">
@@ -194,29 +244,68 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Testimonials Section at Bottom */}
-        <section className="testimonials-section">
+        {/* Testimonials Section (Carousel) */}
+        <section
+          className="testimonials-section"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          aria-roledescription="carousel"
+        >
           <h2>What Our Winners Say</h2>
-          {TESTIMONIALS.map(({ id, name, text }) => (
-            <div key={id} className="testimonial">
-              <div className="avatar">{name.charAt(0)}</div>
-              <div className="testimonial-content">
-                <strong>{name}</strong>
-                <p>{text}</p>
-                <div className="testimonial-actions">
-                  <button
-                    className={`like-button ${justLiked[id] ? 'liked' : ''}`}
-                    onClick={() => handleLikeClick(id)}
-                  >
-                    👍 {likes[id] || 0}
-                  </button>
-                  <button className="comment-link" disabled>
-                    💬 Comment
-                  </button>
+
+          <div className="testimonial-carousel">
+            <button
+              className="carousel-control prev"
+              aria-label="Previous testimonial"
+              onClick={goPrev}
+            >
+              ‹
+            </button>
+
+            <div className="testimonial-display" role="group" aria-label={`Testimonial ${currentIdx + 1} of ${TESTIMONIALS.length}`}>
+              <div className="testimonial">
+                <div className="avatar">{current.name.charAt(0)}</div>
+                <div className="testimonial-content">
+                  <strong>{current.name}</strong>
+                  <p>{current.text}</p>
+                  <div className="testimonial-actions">
+                    <button
+                      className={`like-button ${justLiked[current.id] ? 'liked' : ''}`}
+                      onClick={() => handleLikeClick(current.id)}
+                    >
+                      👍 {likes[current.id] || 0}
+                    </button>
+                    <button className="comment-link" disabled>
+                      💬 Comment
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          ))}
+
+            <button
+              className="carousel-control next"
+              aria-label="Next testimonial"
+              onClick={goNext}
+            >
+              ›
+            </button>
+          </div>
+
+          <div className="carousel-dots" role="tablist" aria-label="Testimonial navigation">
+            {TESTIMONIALS.map((t, idx) => (
+              <button
+                key={t.id}
+                className={`dot ${idx === currentIdx ? 'active' : ''}`}
+                onClick={() => setCurrentIdx(idx)}
+                aria-label={`Show testimonial ${idx + 1}`}
+                aria-selected={idx === currentIdx}
+                role="tab"
+              />
+            ))}
+          </div>
         </section>
       </main>
 
