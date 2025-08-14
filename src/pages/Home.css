@@ -96,7 +96,6 @@ h3 {
     border: 2px solid rgba(0, 0, 0, 0.397);
 }
 
-/* attribute selectors left as-is (depends on how LottoBall passes color prop to DOM) */
 .lotto-ball[color="#88f"] {
     background-color: var(--premium-blue);
     border-color: rgba(0,0,0,0.1);
@@ -416,42 +415,6 @@ h3 {
     border-radius: 4px;
 }
 
-/* Dots / indicators */
-.carousel-dots {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 14px;
-}
-
-.dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: rgba(0,0,0,0.14);
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    transition: transform 0.15s ease, background 0.15s ease;
-}
-
-.dot:hover {
-    transform: scale(1.15);
-}
-
-/* active dot pulse */
-@keyframes dotPulse {
-  0%   { transform: scale(1); box-shadow: 0 0 0 0 rgba(36,57,78,0.12); }
-  70%  { transform: scale(1.18); box-shadow: 0 0 0 8px rgba(36,57,78,0.04); }
-  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(36,57,78,0); }
-}
-
-.dot.active {
-    background: var(--primary-blue);
-    box-shadow: 0 2px 6px rgba(36,57,78,0.18);
-    animation: dotPulse 1100ms ease-in-out infinite;
-}
-
 /* Responsive tweaks */
 @media (max-width: 880px) {
     .testimonial-display {
@@ -492,15 +455,10 @@ h3 {
     .testimonial-content strong {
         font-size: 1rem;
     }
-
-    .dot {
-        width: 9px;
-        height: 9px;
-    }
 }
 
 /* small responsive tweak for very narrow screens */
 @media (max-width: 420px) {
   .testimonial-display { padding: 10px; }
-  .carousel-control { display: none; } /* rely on swipe & dots on tiny screens */
+  .carousel-control { display: none; } /* rely on swipe on tiny screens */
 }
