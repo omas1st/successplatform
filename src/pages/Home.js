@@ -106,7 +106,9 @@ export default function Home() {
   // Carousel-specific state
   const [currentIdx, setCurrentIdx] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [direction, setDirection] = useState('right'); // 'left' or 'right'
   const touchStartX = useRef(null);
+  const autoAdvanceRef = useRef(null);
 
   // Load lotto data
   useEffect(() => {
@@ -144,21 +146,54 @@ export default function Home() {
     }, 800);
   };
 
-  // Carousel: auto-advance
+  // Helper: choose a random index different from current
+  const randomNextIndex = (current, len) => {
+    if (len <= 1) return current;
+    let next = Math.floor(Math.random() * len);
+    if (next === current) {
+      // pick adjacent forward if random produced same
+      next = (current + 1) % len;
+    }
+    return next;
+  };
+
+  // Carousel: auto-advance (randomly pick next)
   useEffect(() => {
-    if (isPaused) return;
-    const interval = setInterval(() => {
-      setCurrentIdx(prev => (prev + 1) % TESTIMONIALS.length);
-    }, 5000); // 5s
-    return () => clearInterval(interval);
+    // clear any existing
+    if (autoAdvanceRef.current) {
+      clearInterval(autoAdvanceRef.current);
+      autoAdvanceRef.current = null;
+    }
+    if (!isPaused) {
+      autoAdvanceRef.current = setInterval(() => {
+        setCurrentIdx(prev => {
+          const next = randomNextIndex(prev, TESTIMONIALS.length);
+          // decide direction for animation
+          if (next === prev) {
+            setDirection('right');
+          } else {
+            setDirection(next > prev ? 'right' : 'left');
+          }
+          return next;
+        });
+      }, 5000);
+    }
+    return () => {
+      if (autoAdvanceRef.current) {
+        clearInterval(autoAdvanceRef.current);
+        autoAdvanceRef.current = null;
+      }
+    };
   }, [isPaused]);
 
   // Keyboard navigation
   useEffect(() => {
     const handler = e => {
       if (e.key === 'ArrowLeft') {
+        setDirection('left');
         setCurrentIdx(prev => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
       } else if (e.key === 'ArrowRight') {
+        setDirection('right');
         setCurrentIdx(prev => (prev + 1) % TESTIMONIALS.length);
       }
     };
@@ -166,8 +201,20 @@ export default function Home() {
     return () => window.removeEventListener('keydown', handler);
   }, []);
 
-  const goPrev = () => setCurrentIdx(prev => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
-  const goNext = () => setCurrentIdx(prev => (prev + 1) % TESTIMONIALS.length);
+  const goPrev = () => {
+    setDirection('left');
+    setCurrentIdx(prev => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
+  };
+  const goNext = () => {
+    setDirection('right');
+    setCurrentIdx(prev => (prev + 1) % TESTIMONIALS.length);
+  };
+
+  const handleDotClick = (idx) => {
+    if (idx === currentIdx) return;
+    setDirection(idx > currentIdx ? 'right' : 'left');
+    setCurrentIdx(idx);
+  };
 
   const handleTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX;
@@ -179,9 +226,13 @@ export default function Home() {
     const diff = startX - endX;
     if (Math.abs(diff) > 40) {
       if (diff > 0) {
-        goNext();
+        // swipe left -> next
+        setDirection('right');
+        setCurrentIdx(prev => (prev + 1) % TESTIMONIALS.length);
       } else {
-        goPrev();
+        // swipe right -> prev
+        setDirection('left');
+        setCurrentIdx(prev => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
       }
     }
     touchStartX.current = null;
@@ -264,7 +315,11 @@ export default function Home() {
               ‹
             </button>
 
-            <div className="testimonial-display" role="group" aria-label={`Testimonial ${currentIdx + 1} of ${TESTIMONIALS.length}`}>
+            <div
+              className={`testimonial-display ${direction === 'left' ? 'slide-left' : 'slide-right'}`}
+              role="group"
+              aria-label={`Testimonial ${currentIdx + 1} of ${TESTIMONIALS.length}`}
+            >
               <div className="testimonial">
                 <div className="avatar">{current.name.charAt(0)}</div>
                 <div className="testimonial-content">
@@ -299,7 +354,7 @@ export default function Home() {
               <button
                 key={t.id}
                 className={`dot ${idx === currentIdx ? 'active' : ''}`}
-                onClick={() => setCurrentIdx(idx)}
+                onClick={() => handleDotClick(idx)}
                 aria-label={`Show testimonial ${idx + 1}`}
                 aria-selected={idx === currentIdx}
                 role="tab"
