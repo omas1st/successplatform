@@ -481,7 +481,7 @@ export default function Home() {
     return next;
   };
 
-  // Carousel: auto-advance (randomly pick next)
+  // Carousel: auto-advance (randomly pick next) — interval changed to 2000ms (2s)
   useEffect(() => {
     // clear any existing
     if (autoAdvanceRef.current) {
@@ -500,7 +500,7 @@ export default function Home() {
           }
           return next;
         });
-      }, 5000);
+      }, 2000);
     }
     return () => {
       if (autoAdvanceRef.current) {
@@ -532,12 +532,6 @@ export default function Home() {
   const goNext = () => {
     setDirection('right');
     setCurrentIdx(prev => (prev + 1) % TESTIMONIALS.length);
-  };
-
-  const handleDotClick = (idx) => {
-    if (idx === currentIdx) return;
-    setDirection(idx > currentIdx ? 'right' : 'left');
-    setCurrentIdx(idx);
   };
 
   const handleTouchStart = (e) => {
@@ -673,18 +667,8 @@ export default function Home() {
             </button>
           </div>
 
-          <div className="carousel-dots" role="tablist" aria-label="Testimonial navigation">
-            {TESTIMONIALS.map((t, idx) => (
-              <button
-                key={t.id}
-                className={`dot ${idx === currentIdx ? 'active' : ''}`}
-                onClick={() => handleDotClick(idx)}
-                aria-label={`Show testimonial ${idx + 1}`}
-                aria-selected={idx === currentIdx}
-                role="tab"
-              />
-            ))}
-          </div>
+          {/* removed dot indicators as requested */}
+
         </section>
       </main>
 
