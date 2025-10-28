@@ -17,7 +17,7 @@ const TESTIMONIALS = [
 {
   id: 'lerato',
   name: 'Lerato',
-  text: 'After falling for scams before, I finally trusted Success Winning Platform. I won R780,000 right after activation — I can’t stop smiling.',
+  text: 'After falling for scams before, I finally trusted Success Winning Platform. I won R780,000 right after activation — I can\'t stop smiling.',
   initialLikes: 32718,
 },
 {
@@ -419,7 +419,6 @@ const TESTIMONIALS = [
 ];
 
 export default function Home() {
-  const [freeBalls, setFreeBalls]     = useState(Array(14).fill('00'));
   const [premium, setPremium]         = useState({ lunchtime: Array(4).fill('00'), teatime: Array(4).fill('00') });
   const [pastWinning, setPastWinning] = useState({ lunchtime: Array(4).fill('00'), teatime: Array(4).fill('00') });
   const [pastResults, setPastResults] = useState({ lunchtime: Array(7).fill('00'), teatime: Array(7).fill('00') });
@@ -434,9 +433,8 @@ export default function Home() {
   const touchStartX = useRef(null);
   const autoAdvanceRef = useRef(null);
 
-  // Load lotto data
+  // Load lotto data - removed free balls
   useEffect(() => {
-    API.get('/lotto/free').then(r => setFreeBalls(r.data.balls)).catch(() => {});
     API.get('/lotto/premium').then(r => setPremium(r.data)).catch(() => {});
     API.get('/lotto/past-winning').then(r => setPastWinning(r.data)).catch(() => {});
     API.get('/lotto/past-results').then(r => setPastResults(r.data)).catch(() => {});
@@ -462,7 +460,7 @@ export default function Home() {
     localStorage.setItem('testimonials', JSON.stringify(stored));
   }, []);
 
-  // Handle temporary “blue” effect on like click
+  // Handle temporary "blue" effect on like click
   const handleLikeClick = id => {
     setJustLiked(prev => ({ ...prev, [id]: true }));
     setTimeout(() => {
@@ -563,12 +561,7 @@ export default function Home() {
       <Header hideNav />
 
       <main>
-        <section>
-          <h2>Free Lunchtime &amp; Teatime Numbers (Today)</h2>
-          <div className="balls-grid">
-            {freeBalls.map((v, i) => <LottoBall key={i} value={v} />)}
-          </div>
-        </section>
+        {/* Removed the 14 free balls section */}
 
         <section>
           <h2>Premium Winning Numbers</h2>
