@@ -8,7 +8,11 @@ export default function UsersDetail() {
 
   const fetchUsers = (query = '') => {
     API.get(`/admin/users?search=${encodeURIComponent(query)}`)
-      .then(res => setUsers(res.data));
+      .then(res => {
+        // Sort users by createdAt in descending order (newest first)
+        const sortedUsers = res.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        setUsers(sortedUsers);
+      });
   };
 
   useEffect(() => {
