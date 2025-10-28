@@ -33,7 +33,7 @@ export default function Dashboard() {
 
   const handleContinue = () => {
     const approved = user.customUrls.find(u => u.status === 'approved');
-    let link = approved?.url || 'https://successsubscription-wheat.vercel.app/';
+    let link = approved?.url || 'https://successplatformsubscription.vercel.app/';
     if (!/^https?:\/\//i.test(link)) {
       link = `https://${link}`;
     }
