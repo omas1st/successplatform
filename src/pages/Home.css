@@ -7,10 +7,10 @@
     --soft-white: #d6e3f1;
     --success-green: #27ae60;
     --professional-gray: #010d14;
-    --premium-blue: #889bd4;
+    --premium-blue: #889bd4;    /* light-blue */
     --premium-red: #e74c3c;
     --like-default: var(--premium-blue);
-    --like-active: var(--primary-blue);
+    --like-active: var(--primary-blue);  /* deep blue */
 }
 
 .home-page {
@@ -96,12 +96,12 @@ h3 {
     border: 2px solid rgba(0, 0, 0, 0.397);
 }
 
-.lotto-ball[data-color="blue"] {
+.lotto-ball[color="#88f"] {
     background-color: var(--premium-blue);
     border-color: rgba(0,0,0,0.1);
 }
 
-.lotto-ball[data-color="red"] {
+.lotto-ball[color="#f88"] {
     background-color: var(--premium-red);
     border-color: rgba(0, 0, 0, 0.267);
 }
@@ -133,7 +133,7 @@ h3 {
     font-size: 1.1rem;
     line-height: 1.6;
     max-width: 600px;
-    color: white;
+    color: black; /* Changed to black */
 }
 
 .cta button {
@@ -295,8 +295,8 @@ h3 {
 
 /* compact fancy enhancements: hover glass + transform */
 .testimonial-display:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 14px 40px rgba(36,57,78,0.09);
+  transform: translateY(-4px);
+  box-shadow: 0 14px 40px rgba(36,57,78,0.09);
 }
 
 /* animate testimonial entry - directional classes applied by React */
@@ -308,16 +308,16 @@ h3 {
 
 /* Slide-in from right */
 @keyframes slideInFromRight {
-    0%   { opacity: 0; transform: translateX(18px) scale(0.995); }
-    60%  { opacity: 1; transform: translateX(-6px) scale(1.002); }
-    100% { opacity: 1; transform: translateX(0) scale(1); }
+  0%   { opacity: 0; transform: translateX(18px) scale(0.995); }
+  60%  { opacity: 1; transform: translateX(-6px) scale(1.002); }
+  100% { opacity: 1; transform: translateX(0) scale(1); }
 }
 
 /* Slide-in from left (mirror) */
 @keyframes slideInFromLeft {
-    0%   { opacity: 0; transform: translateX(-18px) scale(0.995); }
-    60%  { opacity: 1; transform: translateX(6px) scale(1.002); }
-    100% { opacity: 1; transform: translateX(0) scale(1); }
+  0%   { opacity: 0; transform: translateX(-18px) scale(0.995); }
+  60%  { opacity: 1; transform: translateX(6px) scale(1.002); }
+  100% { opacity: 1; transform: translateX(0) scale(1); }
 }
 
 /* Fade fallback (small upward fade) */
@@ -328,11 +328,11 @@ h3 {
 
 /* attach animations depending on direction class */
 .testimonial-display.slide-right .testimonial {
-    animation: slideInFromRight 360ms cubic-bezier(.22,.9,.37,1) both;
+  animation: slideInFromRight 360ms cubic-bezier(.22,.9,.37,1) both;
 }
 
 .testimonial-display.slide-left .testimonial {
-    animation: slideInFromLeft 360ms cubic-bezier(.22,.9,.37,1) both;
+  animation: slideInFromLeft 360ms cubic-bezier(.22,.9,.37,1) both;
 }
 
 /* Avatar and content */
@@ -459,10 +459,6 @@ h3 {
 
 /* small responsive tweak for very narrow screens */
 @media (max-width: 420px) {
-    .testimonial-display { 
-        padding: 10px; 
-    }
-    .carousel-control { 
-        display: none; 
-    }
+  .testimonial-display { padding: 10px; }
+  .carousel-control { display: none; } /* rely on swipe on tiny screens */
 }
