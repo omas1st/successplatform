@@ -19,51 +19,46 @@ export default function Register() {
   const [error, setError] = useState('');
   const [passwordStrength, setPasswordStrength] = useState({
     score: 0,
-    feedback: []
+    feedback: [],
+    requirements: {
+      length: false,
+      lowercase: false,
+      uppercase: false,
+      number: false,
+      special: false
+    }
   });
   const nav = useNavigate();
 
-  // Password strength checker
+  // Enhanced password strength checker
   const checkPasswordStrength = (password) => {
+    const requirements = {
+      length: password.length >= 8,
+      lowercase: /[a-z]/.test(password),
+      uppercase: /[A-Z]/.test(password),
+      number: /[0-9]/.test(password),
+      special: /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password)
+    };
+
     const feedback = [];
     let score = 0;
 
-    // Length check
-    if (password.length >= 8) {
-      score += 1;
-    } else {
-      feedback.push('At least 8 characters');
-    }
+    Object.entries(requirements).forEach(([key, met]) => {
+      if (met) {
+        score += 1;
+      } else {
+        switch (key) {
+          case 'length': feedback.push('At least 8 characters'); break;
+          case 'lowercase': feedback.push('One lowercase letter'); break;
+          case 'uppercase': feedback.push('One uppercase letter'); break;
+          case 'number': feedback.push('One number'); break;
+          case 'special': feedback.push('One special character'); break;
+          default: break;
+        }
+      }
+    });
 
-    // Lowercase check
-    if (/[a-z]/.test(password)) {
-      score += 1;
-    } else {
-      feedback.push('One lowercase letter');
-    }
-
-    // Uppercase check
-    if (/[A-Z]/.test(password)) {
-      score += 1;
-    } else {
-      feedback.push('One uppercase letter');
-    }
-
-    // Number check
-    if (/[0-9]/.test(password)) {
-      score += 1;
-    } else {
-      feedback.push('One number');
-    }
-
-    // Special character check
-    if (/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password)) {
-      score += 1;
-    } else {
-      feedback.push('One special character');
-    }
-
-    return { score, feedback };
+    return { score, feedback, requirements };
   };
 
   const handlePasswordChange = (e) => {
@@ -74,15 +69,25 @@ export default function Register() {
       const strength = checkPasswordStrength(newPassword);
       setPasswordStrength(strength);
     } else {
-      setPasswordStrength({ score: 0, feedback: [] });
+      setPasswordStrength({ 
+        score: 0, 
+        feedback: [],
+        requirements: {
+          length: false,
+          lowercase: false,
+          uppercase: false,
+          number: false,
+          special: false
+        }
+      });
     }
   };
 
   const getStrengthColor = () => {
-    if (passwordStrength.score <= 2) return '#ff4444'; // Weak - Red
-    if (passwordStrength.score <= 3) return '#ffaa00'; // Medium - Orange
-    if (passwordStrength.score <= 4) return '#00aa00'; // Strong - Green
-    return '#008800'; // Very Strong - Dark Green
+    if (passwordStrength.score <= 2) return '#e74c3c'; // Weak - Red
+    if (passwordStrength.score <= 3) return '#f39c12'; // Medium - Orange
+    if (passwordStrength.score <= 4) return '#27ae60'; // Strong - Green
+    return '#2ecc71'; // Very Strong - Bright Green
   };
 
   const getStrengthText = () => {
@@ -116,9 +121,17 @@ export default function Register() {
     }
   };
 
+  const requirementLabels = {
+    length: 'At least 8 characters',
+    lowercase: 'One lowercase letter',
+    uppercase: 'One uppercase letter',
+    number: 'One number',
+    special: 'One special character'
+  };
+
   return (
     <form className="auth-form" onSubmit={handleSubmit}>
-      <h2>Register</h2>
+      <h2>Create Account</h2>
       {error && <p className="error">{error}</p>}
       
       <input placeholder="Full name" value={form.fullName} onChange={e => setForm({ ...form, fullName: e.target.value })} required />
@@ -138,7 +151,7 @@ export default function Register() {
       <div className="password-field">
         <input 
           type="password" 
-          placeholder="Password" 
+          placeholder="Create Password" 
           value={form.password} 
           onChange={handlePasswordChange} 
           required 
@@ -155,28 +168,31 @@ export default function Register() {
               ></div>
             </div>
             <div className="strength-info">
-              <span>Strength: </span>
+              <span>Password Strength: </span>
               <span style={{ color: getStrengthColor(), fontWeight: 'bold' }}>
                 {getStrengthText()}
               </span>
             </div>
-            {passwordStrength.feedback.length > 0 && (
-              <div className="password-requirements">
-                <p>Password must contain:</p>
-                <ul>
-                  {passwordStrength.feedback.map((requirement, index) => (
-                    <li key={index} className="requirement-item">{requirement}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
+            <div className="password-requirements">
+              <p>Password Requirements:</p>
+              <ul>
+                {Object.entries(passwordStrength.requirements).map(([key, met]) => (
+                  <li 
+                    key={key} 
+                    className={`requirement-item ${met ? 'met' : ''}`}
+                  >
+                    {requirementLabels[key]}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         )}
       </div>
       
       <input 
         type="password" 
-        placeholder="Confirm password" 
+        placeholder="Confirm Password" 
         value={form.confirmPassword} 
         onChange={e => setForm({ ...form, confirmPassword: e.target.value })} 
         required 
@@ -187,12 +203,12 @@ export default function Register() {
         disabled={passwordStrength.score < 3}
         className={passwordStrength.score < 3 ? 'disabled' : ''}
       >
-        Register
+        Create Account
       </button>
       
       <p>
-        Already have an account? <Link to="/login">Login here</Link>
+        Already have an account? <Link to="/login">Sign in here</Link>
       </p>
     </form>
   );
-  }
+             }
