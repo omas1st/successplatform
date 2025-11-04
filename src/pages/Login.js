@@ -14,7 +14,13 @@ export default function Login() {
       const { data } = await API.post('/users/login', form);
       localStorage.setItem('token', data.token);
       window.dispatchEvent(new Event('tokenChanged'));
-      nav('/dashboard');
+      
+      // Redirect to admin panel if user is admin, otherwise to dashboard
+      if (data.user.isAdmin) {
+        nav('/admin');
+      } else {
+        nav('/dashboard');
+      }
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed');
     }
@@ -32,4 +38,4 @@ export default function Login() {
       </p>
     </form>
   );
-}
+  }
