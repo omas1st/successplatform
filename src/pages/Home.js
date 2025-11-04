@@ -14,7 +14,7 @@ const TESTIMONIALS = [
   text: 'I almost gave up after so many losses, but Success Winning Platform changed everything. I activated my account and won R450,000 — life literally turned around for me.',
   initialLikes: 20214,
 },
-{
+  {
   id: 'lerato',
   name: 'Lerato',
   text: 'After falling for scams before, I finally trusted Success Winning Platform. I won R780,000 right after activation — I can\'t stop smiling.',
@@ -410,7 +410,7 @@ const TESTIMONIALS = [
     text: 'I was on the verge of quitting UK49s for good after so many losses and falling for scams. But after joining Success Winning Platform, I won R450,000 with their 3 straight numbers and bonus! I can’t believe my luck finally changed.',
     initialLikes: 30214,
   },
-  {
+ {
     id: 'daniel',
     name: 'Daniel',
     text: 'Honestly, I had lost all hope in UK49s. Scammers took so much from me. But Success Winning Platform restored my faith. I won R120,000 right after activating my account!',
@@ -424,6 +424,8 @@ export default function Home() {
   const [pastResults, setPastResults] = useState({ lunchtime: Array(7).fill('00'), teatime: Array(7).fill('00') });
   const [likes, setLikes]             = useState({});
   const [justLiked, setJustLiked]     = useState({});
+  const [isFooterVisible, setIsFooterVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const navigate = useNavigate();
 
   // Carousel-specific state
@@ -432,6 +434,37 @@ export default function Home() {
   const [direction, setDirection] = useState('right'); // 'left' or 'right'
   const touchStartX = useRef(null);
   const autoAdvanceRef = useRef(null);
+
+  // Scroll detection for footer visibility
+  useEffect(() => {
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          
+          if (currentScrollY > lastScrollY && currentScrollY > 100) {
+            // Scrolling down and past 100px
+            setIsFooterVisible(false);
+          } else if (currentScrollY < lastScrollY) {
+            // Scrolling up
+            setIsFooterVisible(true);
+          }
+          
+          setLastScrollY(currentScrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [lastScrollY]);
 
   // Load lotto data - removed free balls
   useEffect(() => {
@@ -665,9 +698,9 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="site-footer">
+      <footer className={`site-footer ${isFooterVisible ? '' : 'hidden'}`}>
         <p>© {new Date().getFullYear()} Success Platform contact: uk49success@gmail.com</p>
       </footer>
     </div>
   );
-}
+              }
