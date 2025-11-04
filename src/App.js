@@ -30,6 +30,8 @@ function App() {
         path="/dashboard"
         element={token ? <Dashboard /> : <Navigate to="/login" replace />}
       />
+      
+      {/* Admin route - only accessible by admin users */}
       <Route
         path="/admin/*"
         element={token ? <AdminPanel /> : <Navigate to="/login" replace />}
