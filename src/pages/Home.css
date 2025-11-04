@@ -21,6 +21,7 @@
     min-height: 100vh;
     position: relative;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    padding-bottom: 100px; /* Increased padding to account for footer */
 }
 
 main {
@@ -169,6 +170,13 @@ h3 {
     padding: 20px;
     font-size: 0.9rem;
     border-top: 3px solid var(--accent-gold);
+    transition: transform 0.3s ease-in-out;
+    transform: translateY(0);
+    z-index: 1000;
+}
+
+.site-footer.hidden {
+    transform: translateY(100%);
 }
 
 @media (max-width: 768px) {
